@@ -1,9 +1,9 @@
-//import {heroes} from './data/heroes'
-import heroes,{owners} from '../heroes/heroes';
+import heroes from '../heroes/heroes'
+//import heroes,{owners} from '../heroes/heroes';
 
-console.log(owners);
+//console.log(owners);
 
-const getHeroeById = (id) => {
+export const getHeroeById = (id) => {
     return heroes.find((heroes) => heroes.id === id)
 }
 
@@ -12,9 +12,9 @@ const getHeroeById = (id) => {
 export const getHeroeByIdSimpli = (id) => heroes.find((heroes) => heroes.id === id);
 
 
-console.log(getHeroeById(2));
-console.log(getHeroeByIdSimpli(3));
+//console.log(getHeroeById(2));
+//console.log(getHeroeByIdSimpli(3));
 
-const getHeroesByOwner = (owner) => heroes.filter((heroes) => heroes.owner === owner)
+export const getHeroesByOwner = (owners) => heroes.filter((heroes) => heroes.owner === owners)
 
-console.log(getHeroesByOwner('maven'))
+//console.log(getHeroesByOwner('maven'))

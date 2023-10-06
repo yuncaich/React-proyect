@@ -1,18 +1,10 @@
-import { getHeroeByIdSimpli } from "./bases/import_y_find";
+const getImagenPromesa = () => {
+    const promesa = () => new Promise ( resolve => resolve(''));
+}
 
-//Promesas
-const promesas = new Promise( (resolve, reject) => {
-    
-    setTimeout( () => {
-        const heroes1 = getHeroeByIdSimpli(1);
-        console.log(heroes1);
-    } , 2000);
+const getImage = async() => {
+    return 'URL'
+}
 
-});
 
-promesas.then( () => {
-
-    console.log('Then de la promesa')
-
-})
-
+getImage().then(console.log);
