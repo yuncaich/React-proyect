@@ -1,0 +1,35 @@
+ :root {
+    --naranja-logo: #FFA500; /* Reemplaza con el código de color exacto del logo */
+    --gris-texto: #333333;
+    --fondo-crema: #F5F5DC;
+    --fondo-blanco: #FFFFFF;
+  }
+  
+  body {
+    background-color: var(--fondo-blanco);
+    color: var(--gris-texto);
+    font-family: 'Roboto', sans-serif; /* Ejemplo de una fuente moderna */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .btn {
+    background-color: var(--naranja-logo);
+    color: var(--fondo-blanco);
+  }
+  
+  a:hover, .btn:hover {
+    opacity: 0.8;
+  }
+  
+  header, footer {
+    background-color: var(--gris-texto);
+    color: var(--fondo-blanco);
+  }
+  
+  section {
+    padding: 40px 0;
+  }
+  
+  /* Añade estilos para elementos geométricos y más, según sea necesario */
+  
