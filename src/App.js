@@ -7,9 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <MenuBar />
-        <SliderComponent />
       </header>
       <main>
+        <SliderComponent />
       </main>
       <footer>
         {/* Contenido del footer */}
