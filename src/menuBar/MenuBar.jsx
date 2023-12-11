@@ -4,6 +4,10 @@ import styled from 'styled-components';
 const Logo = styled.img`
   height: 50px; // Ajusta según el tamaño de tu logo
   margin-right: 20px; // Añade un margen si es necesario
+
+  @media (max-width: 768px) {
+    height: 30px; // Tamaño más pequeño para dispositivos móviles
+  }
 `;
 // Estilos para la barra de navegación
 const NavbarContainer = styled.nav`
@@ -27,6 +31,10 @@ const BackgroundImageContainer = styled.div`
   background-position: center;
   position: relative; // Posición relativa para posicionar los elementos internos
   height: 100vh; // Ajusta la altura según tus necesidades
+
+  @media (max-width: 768px) {
+    height: auto; // Ajustar la altura automáticamente en dispositivos móviles
+  }
 `;
 
 // Estilos para el contenedor del contenido principal que se verá sobre la imagen de fondo
