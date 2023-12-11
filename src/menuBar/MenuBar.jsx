@@ -32,9 +32,6 @@ const BackgroundImageContainer = styled.div`
   position: relative; // Posición relativa para posicionar los elementos internos
   height: 100vh; // Ajusta la altura según tus necesidades
 
-  @media (max-width: 768px) {
-    height: auto; // Ajustar la altura automáticamente en dispositivos móviles
-  }
 `;
 
 // Estilos para el contenedor del contenido principal que se verá sobre la imagen de fondo
