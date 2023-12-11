@@ -1,5 +1,9 @@
 import MenuBar from './menuBar/MenuBar'; 
 import SliderComponent from './slider/SliderComponent';
+import Price from './price/Price';
+import Contact from './contact/contact';
+import Map from './contact/Map';
+import Footer from './footer/footer';
 
 
 function App() {
@@ -10,6 +14,10 @@ function App() {
       </header>
       <main>
         <SliderComponent />
+        <Price />
+        <Contact />
+        <Map />
+        <Footer />
       </main>
       <footer>
         {/* Contenido del footer */}

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Logo = styled.img`
   height: 50px; // Ajusta según el tamaño de tu logo
-  cursor: pointer;
   margin-right: 20px; // Añade un margen si es necesario
 `;
 // Estilos para la barra de navegación
@@ -76,7 +75,7 @@ const Menubar = () => {
     <NavbarContainer>
       <NavbarItemsContainer>
         <NavbarItem href="#home">Home</NavbarItem>
-        <NavbarItem href="#informacion">Información</NavbarItem>
+        <NavbarItem href="#information">Información</NavbarItem>
         <Logo src='logo.png' alt="Logo" />
         <NavbarItem href="#precio">Precio</NavbarItem>
         <NavbarItem href="#contacto">Contacto</NavbarItem>
@@ -87,7 +86,7 @@ const Menubar = () => {
 
 const HeroBackground = () => {
   return (
-    <BackgroundImageContainer>
+    <BackgroundImageContainer id='Home'>
       <Menubar />
       <ContentContainer>
         <FancyTitle>Mundolandia Park</FancyTitle>

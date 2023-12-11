@@ -6,174 +6,171 @@ import slider2 from '../images/slider2.jpg';
 import slider3 from '../images/slider3.jpg';
 
 
+const StyledTitle = styled.h1`
+  font-size: 2.5rem; // Tamaño grande para destacar
+  color: #fff; // Color blanco para contraste
+  text-align: center; // Centrado en la página o contenedor
+  text-transform: uppercase; // Opción para tener todo el texto en mayúsculas
+  font-weight: bold; // Fuente en negrita para darle más presencia
+  letter-spacing: 1.5px; // Espaciado entre letras para un efecto estilizado
+  margin-bottom: 1rem; // Margen inferior para separarlo de otros elementos
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Sombra de texto para dar profundidad
+  line-height: 1.2; // Altura de línea para ajustar la legibilidad del texto
 
-// Estilos para el contenedor general
-const ExperienceContainer = styled.div`
-  max-width: 100%;
-  padding: 20px;
-  background: #000; // Fondo oscuro para el contraste
-  color: #fff;
+  @media (max-width: 768px) {
+    font-size: 2rem; // Un tamaño de fuente más pequeño para dispositivos más pequeños
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem; // Aún más pequeño para pantallas de móviles
+  }
 `;
 
-// Estilos para cada tarjeta del slider
-const Card = styled.div`
-  background: #fff;
-  border-radius: 10px; // Mantiene los bordes redondeados
-  height: auto; // Ajusta la altura automáticamente
+const ExperienceContainer = styled.div`
   position: relative;
-  overflow: hidden;
-  margin: 0 10px; // Añade espacio entre los Card
+  max-width: 100%;
+  margin: auto;
+  padding: 20px 0; // Ajusta el padding vertical según sea necesario
+  background: #000; // o cualquier otro color de fondo que desees
+`;
 
+// Estilos para los Cards dentro del slider
+const Card = styled.div`
+  color: #fff;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 300px; // Asegura un ancho mínimo para las tarjetas
+  height: 300px; // Altura fija para las tarjetas
+
+  
+  
+  // Ajusta el tamaño de la imagen de fondo para que llene la tarjeta
   img {
     width: 100%;
-    height: auto; // Mantiene la relación de aspecto de la imagen
-    border-radius: 10px; // Mantiene los bordes redondeados de la imagen
+    height: 100%;
+    object-fit: cover;
   }
 
-  h3 {
+  // Estilos para el contenido sobre la imagen de fondo
+  .content {
     position: absolute;
-    bottom: 70px;
+    bottom: 20px;
     left: 20px;
-  }
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5); // Fondo oscuro para mejorar la legibilidad del texto
+    border-radius: 10px; // Bordes redondeados para el fondo del texto
+    padding: 20px; // Espaciado interno para el contenido
 
-  p {
-    position: absolute;
-    bottom: 40px;
-    left: 20px;
-  }
+    h3 {
+      font-size: 1.25rem; // Ajusta el tamaño del título según sea necesario
+    }
 
-  a {
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
-    text-decoration: none;
-    color: #fff;
-    background: #333;
-    padding: 10px;
-    border-radius: 5px;
+    p {
+      font-size: 1rem; // Ajusta el tamaño del párrafo según sea necesario
+    }
   }
 `;
 
-// Componente de slider
+const CustomSlider = styled(Slider)`
+
+  .slick-track {
+      display: flex;
+      align-items: center;
+      gap: 20px; 
+    }
+  .slick-prev,
+  .slick-next {
+    z-index: 100; // Asegúrate de que el z-index sea suficientemente alto para estar sobre las imágenes
+    top: 50%; // Centra verticalmente
+    transform: translate(0, -50%);
+    background-color: transparent; // Fondo transparente
+    color: white; // Icono blanco
+    &:before {
+      font-size: 30px; // Tamaño del icono
+      opacity: 1; // Las flechas deben ser totalmente visibles
+    }
+  }
+  // Estilos para la flecha izquierda
+  .slick-prev {
+    left: 25px; // Espacio desde el lado izquierdo
+    @media (max-width: 768px) {
+      left: 10px;
+    }
+  }
+
+  // Estilos para la flecha derecha
+  .slick-next {
+    right: 25px; // Espacio desde el lado derecho
+    @media (max-width: 768px) {
+      right: 10px;
+    }
+  }
+
+  // Asegúrate de que las flechas estén siempre visibles
+  .slick-prev.slick-arrow,
+  .slick-next.slick-arrow {
+    display: block !important;
+  }
+`;
+
+
 const MySlider = () => {
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3, // Muestra 3 tarjetas a la vez
     slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
+    centerMode: true, // Centra el slide actual
+    variableWidth: false, 
   };
-  // Sobrescribiendo los estilos por defecto de las flechas de react-slick
-const CustomSlider = styled(Slider)`
-.slick-prev,
-.slick-next {
-  z-index: 1;
-  width: auto;
-  height: auto;
-  background: transparent;
-  color: transparent;
-  font-size: 0;
-}
-
-// Usando ::before para estilizar las flechas con un icono o color deseado
-.slick-prev::before,
-.slick-next::before {
-  font-size: 20px; // Ajusta el tamaño del ícono de la flecha
-  color: white; // El color de la flecha
-}
-
-// Posicionando las flechas sobre las imágenes
-.slick-prev {
-  left: 10px;
-}
-
-.slick-next {
-  right: 10px;
-}
-
-// Ajustes adicionales para asegurar que las flechas no tengan fondo y estén alineadas correctamente
-.slick-prev,
-.slick-next {
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  opacity: 0.75; // Hace las flechas ligeramente transparentes
-
-  &:hover,
-  &:focus {
-    opacity: 1; // Hace las flechas completamente opacas al pasar el mouse
-  }
-}
-
-// Ajustando el espaciado entre los slides
-.slick-list {
-  margin: 0 -10px;
-}
-
-.slick-slide > div {
-  margin: 0 10px;
-  outline: none; // Remueve el outline en foco
-}
-
-// ...otros estilos...
-`;
-
-
+  // Estilos para el slider con las flechas personalizadas
   return (
-    <Slider {...settings}>
-      <Card>
+    <CustomSlider {...settings}>
+    <Card>
         <img src= {slider1} alt="Activities" />
-        <h3>Activities</h3>
-        <p>Tolerably behavior may admit daughters offending...</p>
+        <div className="content">
+          <h3>Instalacion1</h3>
+          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
+        </div>
       </Card>
       <Card>
         <img src= {slider2} alt="prueba" />
-        <h3>Activities</h3>
-        <p>Tolerably behavior may admit daughters offending...</p>
+        <div className="content">
+          <h3>Instalacion2</h3>
+          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
+        </div>
       </Card>
       <Card>
         <img src= {slider3} alt="prueba" />
-        <h3>Activities</h3>
-        <p>Tolerably behavior may admit daughters offending...</p>
+        <div className="content">
+          <h3>Instalacion3</h3>
+          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
+        </div>
       </Card>
       <Card>
         <img src= {slider3} alt="prueba" />
-        <h3>Activities</h3>
-        <p>Tolerably behavior may admit daughters offending...</p>
+        <div className="content">
+          <h3>Instalacion4</h3>
+          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
+        </div>
       </Card>
       <Card>
         <img src= {slider3} alt="prueba" />
-        <h3>Activities</h3>
-        <p>Tolerably behavior may admit daughters offending...</p>
+        <div className="content">
+          <h3>Instalacion5</h3>
+          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
+        </div>
       </Card>
-    </Slider>
+    </CustomSlider>
   );
 };
 
 const OurExcitingExperience = () => {
   return (
-    <ExperienceContainer>
-      <h2>Our Exciting Experience</h2>
+    <ExperienceContainer id="information">
+      <StyledTitle>Instalaciones</StyledTitle>
       <MySlider />
     </ExperienceContainer>
   );
