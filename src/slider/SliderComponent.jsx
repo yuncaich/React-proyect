@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import slider1 from '../images/slider1.jpg';
 import slider2 from '../images/slider2.jpg';
 import slider3 from '../images/slider3.jpg';
+
 
 
 const StyledTitle = styled.h1`
@@ -116,18 +117,51 @@ const CustomSlider = styled(Slider)`
 
 
 const MySlider = () => {
-  const settings = {
+
+  const baseSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Muestra 3 tarjetas a la vez
-    slidesToScroll: 1,
-    centerMode: true, // Centra el slide actual
-    variableWidth: false, 
+    centerMode: true,
+    variableWidth: false,
   };
+
+  // Configuración para dispositivos móviles
+  const mobileSettings = {
+    ...baseSettings,
+    slidesToShow: 1, // Muestra una sola tarjeta a la vez
+    slidesToScroll: 1,
+  };
+
+  // Configuración para dispositivos más grandes
+  const desktopSettings = {
+    ...baseSettings,
+    slidesToShow: 3, // Muestra tres tarjetas a la vez
+    slidesToScroll: 1,
+  };
+
+  // Determinar qué configuración usar basado en el ancho de la ventana
+  const [currentSettings, setCurrentSettings] = React.useState(
+    window.innerWidth < 500 ? mobileSettings : desktopSettings
+  );
+
+  // Escuchar cambios en el tamaño de la ventana
+  React.useEffect(() => {
+    const handleResize = () => {
+      setCurrentSettings(
+        window.innerWidth < 480 ? mobileSettings : desktopSettings
+      );
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Limpiar el evento al desmontar el componente
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Estilos para el slider con las flechas personalizadas
   return (
-    <CustomSlider {...settings}>
+    <CustomSlider {...currentSettings}>
     <Card>
         <img src= {slider1} alt="Activities" />
         <div className="content">
