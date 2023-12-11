@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useMemo } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import slider1 from '../images/slider1.jpg';
@@ -118,27 +118,26 @@ const CustomSlider = styled(Slider)`
 
 const MySlider = () => {
 
-  const baseSettings = {
+  const baseSettings = useMemo(() => ({
     dots: true,
     infinite: true,
     speed: 500,
     centerMode: true,
     variableWidth: false,
-  };
+  }), []);
 
-  // Configuración para dispositivos móviles
-  const mobileSettings = {
+  // useMemo for mobileSettings and desktopSettings without baseSettings in dependency array
+  const mobileSettings = useMemo(() => ({
     ...baseSettings,
-    slidesToShow: 1, // Muestra una sola tarjeta a la vez
+    slidesToShow: 1, 
     slidesToScroll: 1,
-  };
+  }), [baseSettings]);
 
-  // Configuración para dispositivos más grandes
-  const desktopSettings = {
+  const desktopSettings = useMemo(() => ({
     ...baseSettings,
-    slidesToShow: 3, // Muestra tres tarjetas a la vez
+    slidesToShow: 3, 
     slidesToScroll: 1,
-  };
+  }), [baseSettings]);
 
   // Determinar qué configuración usar basado en el ancho de la ventana
   const [currentSettings, setCurrentSettings] = React.useState(
@@ -146,7 +145,7 @@ const MySlider = () => {
   );
 
   // Escuchar cambios en el tamaño de la ventana
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       setCurrentSettings(
         window.innerWidth < 480 ? mobileSettings : desktopSettings
@@ -157,7 +156,7 @@ const MySlider = () => {
 
     // Limpiar el evento al desmontar el componente
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [desktopSettings, mobileSettings]);
 
   // Estilos para el slider con las flechas personalizadas
   return (
