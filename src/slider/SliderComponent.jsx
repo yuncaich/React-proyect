@@ -127,6 +127,7 @@ const MySlider = () => {
   };
 
   // Configuración para dispositivos móviles
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const mobileSettings = {
     ...baseSettings,
     slidesToShow: 1, // Muestra una sola tarjeta a la vez
@@ -134,6 +135,7 @@ const MySlider = () => {
   };
 
   // Configuración para dispositivos más grandes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const desktopSettings = {
     ...baseSettings,
     slidesToShow: 3, // Muestra tres tarjetas a la vez
@@ -154,10 +156,15 @@ const MySlider = () => {
     };
 
     window.addEventListener('resize', handleResize);
+        // Invocar handleResize inmediatamente por si el tamaño de la ventana cambia antes de que se establezca el listener
+        handleResize();
 
-    // Limpiar el evento al desmontar el componente
-    return () => window.removeEventListener('resize', handleResize);
-  }, );
+        // Limpiar el listener cuando el componente se desmonte
+        handleResize();
+
+        // Limpiar el listener cuando el componente se desmonte
+        return () => window.removeEventListener('resize', handleResize);
+      }, [mobileSettings, desktopSettings]);
 
   // Estilos para el slider con las flechas personalizadas
   return (
