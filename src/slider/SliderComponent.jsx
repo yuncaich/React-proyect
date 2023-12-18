@@ -1,220 +1,118 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import styled from 'styled-components';
-import slider1 from '../images/slider1.jpg';
-import slider2 from '../images/slider2.jpg';
-import slider3 from '../images/slider3.jpg';
+import camaElastica from '../images/Cama elastica.jpg';
+import puenteCombate from '../images/puente_combate.jpg';
+import puente from '../images/puente.jpg';
+import zonaBaloncesto from '../images/zona_baloncesto.jpg';
+import zonaJumping from '../images/zona_jumping.jpg';
+import nuestroInstaciones from '../images/nuestro_instalaciones.png';
+import './slider.css';
+
+
+const PrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", left: "10px", zIndex: 1, fontSize: "30px" }}
+      onClick={onClick}
+    />
+  );
+};
+
+const NextArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", right: "10px", zIndex: 1, fontSize: "30px" }}
+      onClick={onClick}
+    />
+  );
+};
 
 
 
-const StyledTitle = styled.h1`
-  font-size: 2.5rem; // Tamaño grande para destacar
-  color: #fff; // Color blanco para contraste
-  text-align: center; // Centrado en la página o contenedor
-  text-transform: uppercase; // Opción para tener todo el texto en mayúsculas
-  font-weight: bold; // Fuente en negrita para darle más presencia
-  letter-spacing: 1.5px; // Espaciado entre letras para un efecto estilizado
-  margin-bottom: 1rem; // Margen inferior para separarlo de otros elementos
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Sombra de texto para dar profundidad
-  line-height: 1.2; // Altura de línea para ajustar la legibilidad del texto
+const StyledTitle = () => {
+  return (
+    <h1 className="text-2xl md:text-4xl lg:text-4xl text-white text-center uppercase font-bold tracking-wider mb-4 shadow-md">
+      Atracciones de diversión
+    </h1>
+  );
+};
 
-  @media (max-width: 768px) {
-    font-size: 2rem; // Un tamaño de fuente más pequeño para dispositivos más pequeños
-  }
+const ExperienceContainer = ({ children }) => {
+  return (
+    <div className="relative max-w-full mx-auto py-5 bg-black">
+      {children}
+    </div>
+  );
+};
 
-  @media (max-width: 480px) {
-    font-size: 1.5rem; // Aún más pequeño para pantallas de móviles
-  }
-`;
-
-const ExperienceContainer = styled.div`
-  position: relative;
-  max-width: 100%;
-  margin: auto;
-  padding: 20px 0; // Ajusta el padding vertical según sea necesario
-  background: #000; // o cualquier otro color de fondo que desees
-`;
-
-// Estilos para los Cards dentro del slider
-const Card = styled.div`
-  color: #fff;
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  min-width: 300px; // Asegura un ancho mínimo para las tarjetas
-  height: 300px; // Altura fija para las tarjetas
-
-  
-  
-  // Ajusta el tamaño de la imagen de fondo para que llene la tarjeta
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  // Estilos para el contenido sobre la imagen de fondo
-  .content {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.5); // Fondo oscuro para mejorar la legibilidad del texto
-    border-radius: 10px; // Bordes redondeados para el fondo del texto
-    padding: 20px; // Espaciado interno para el contenido
-
-    h3 {
-      font-size: 1.25rem; // Ajusta el tamaño del título según sea necesario
-    }
-
-    p {
-      font-size: 1rem; // Ajusta el tamaño del párrafo según sea necesario
-    }
-  }
-`;
-
-const CustomSlider = styled(Slider)`
-
-  .slick-track {
-      display: flex;
-      align-items: center;
-      gap: 20px; 
-    }
-  .slick-prev,
-  .slick-next {
-    z-index: 100; // Asegúrate de que el z-index sea suficientemente alto para estar sobre las imágenes
-    top: 50%; // Centra verticalmente
-    transform: translate(0, -50%);
-    background-color: transparent; // Fondo transparente
-    color: white; // Icono blanco
-    &:before {
-      font-size: 30px; // Tamaño del icono
-      opacity: 1; // Las flechas deben ser totalmente visibles
-    }
-  }
-  // Estilos para la flecha izquierda
-  .slick-prev {
-    left: 25px; // Espacio desde el lado izquierdo
-    @media (max-width: 768px) {
-      left: 10px;
-    }
-  }
-
-  // Estilos para la flecha derecha
-  .slick-next {
-    right: 25px; // Espacio desde el lado derecho
-    @media (max-width: 768px) {
-      right: 10px;
-    }
-  }
-
-  // Asegúrate de que las flechas estén siempre visibles
-  .slick-prev.slick-arrow,
-  .slick-next.slick-arrow {
-    display: block !important;
-  }
-`;
-
+const Card = ({ image, title, description }) => {
+  return (
+    <div className="text-white relative rounded-lg overflow-hidden min-w-[300px] h-[300px]">
+      <img src={image} alt={title} className="w-full h-full object-cover" />
+      <div className="absolute bottom-5 left-5 right-5 bg-black bg-opacity-50 rounded-lg p-5">
+        <h3 className="text-xl">{title}</h3> 
+        <p className="text-base">{description}</p>
+      </div>
+    </div>
+  );
+};
 
 const MySlider = () => {
+  const [slidesToShow, setSlidesToShow] = useState(3);
 
-  const baseSettings = {
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 500) {
+        setSlidesToShow(1); // En dispositivos móviles, muestra solo 1 tarjeta
+      } else {
+        setSlidesToShow(3); // En otros dispositivos, muestra 3 tarjetas
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     centerMode: true,
     variableWidth: false,
-  };
-
-  // Configuración para dispositivos móviles
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const mobileSettings = {
-    ...baseSettings,
-    slidesToShow: 1, // Muestra una sola tarjeta a la vez
+    slidesToShow: slidesToShow, // Usamos el estado para controlar la cantidad de tarjetas mostradas
     slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
-  // Configuración para dispositivos más grandes
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const desktopSettings = {
-    ...baseSettings,
-    slidesToShow: 3, // Muestra tres tarjetas a la vez
-    slidesToScroll: 1,
-  };
-
-  // Determinar qué configuración usar basado en el ancho de la ventana
-  const [currentSettings, setCurrentSettings] = React.useState(
-    window.innerWidth < 500 ? mobileSettings : desktopSettings
-  );
-
-  // Escuchar cambios en el tamaño de la ventana
-  React.useEffect(() => {
-    const handleResize = () => {
-      setCurrentSettings(
-        window.innerWidth < 500 ? mobileSettings : desktopSettings
-      );
-    };
-
-    window.addEventListener('resize', handleResize);
-        // Invocar handleResize inmediatamente por si el tamaño de la ventana cambia antes de que se establezca el listener
-        handleResize();
-
-        // Limpiar el listener cuando el componente se desmonte
-        handleResize();
-
-        // Limpiar el listener cuando el componente se desmonte
-        return () => window.removeEventListener('resize', handleResize);
-      }, [mobileSettings, desktopSettings]);
-
-  // Estilos para el slider con las flechas personalizadas
   return (
-    <CustomSlider {...currentSettings}>
-    <Card>
-        <img src= {slider1} alt="Activities" />
-        <div className="content">
-          <h3>Instalacion1</h3>
-          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
-        </div>
-      </Card>
-      <Card>
-        <img src= {slider2} alt="prueba" />
-        <div className="content">
-          <h3>Instalacion2</h3>
-          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
-        </div>
-      </Card>
-      <Card>
-        <img src= {slider3} alt="prueba" />
-        <div className="content">
-          <h3>Instalacion3</h3>
-          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
-        </div>
-      </Card>
-      <Card>
-        <img src= {slider3} alt="prueba" />
-        <div className="content">
-          <h3>Instalacion4</h3>
-          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
-        </div>
-      </Card>
-      <Card>
-        <img src= {slider3} alt="prueba" />
-        <div className="content">
-          <h3>Instalacion5</h3>
-          <p>We focus a great deal on the understanding of behavioral psychology and influence.</p>
-        </div>
-      </Card>
-    </CustomSlider>
+    <Slider {...settings} className="custom-slick">
+      <Card image={camaElastica} title="Cama Elástica"/>
+      <Card image={puenteCombate} title="Puente Combate" />
+      <Card image={puente} title="Puente"  />
+      <Card image={zonaBaloncesto} title="Zona baloncesto" />
+      <Card image={zonaJumping} title="Zona jump" />
+      <Card image={nuestroInstaciones} title="Nuestro Instalaciones" />
+    </Slider>
   );
 };
 
 const OurExcitingExperience = () => {
   return (
-    <ExperienceContainer id="information">
-      <StyledTitle>Instalaciones</StyledTitle>
+    <div id="informacion" >
+    <ExperienceContainer>
+      <StyledTitle />
       <MySlider />
     </ExperienceContainer>
-  );
+    </div>
+    );
+
 };
 
 export default OurExcitingExperience;

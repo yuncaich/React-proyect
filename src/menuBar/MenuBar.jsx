@@ -1,107 +1,85 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useRef, useEffect } from 'react';
+import backgroundImage from '../images/homeBack.jpeg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faInfoCircle, faTag, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-const Logo = styled.img`
-  height: 50px; // Ajusta según el tamaño de tu logo
-  margin-right: 20px; // Añade un margen si es necesario
 
-  @media (max-width: 768px) {
-    height: 30px; // Tamaño más pequeño para dispositivos móviles
-  }
-`;
-// Estilos para la barra de navegación
-const NavbarContainer = styled.nav`
-  display: flex;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.7); // Fondo semitransparente oscuro
-  color: white;
-  font-family: 'Roboto', sans-serif; // Tipo de letra moderna y legible
-  font-size: 1rem; // Tamaño adecuado para la legibilidad
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-`;
-
-// Contenedor para la imagen de fondo y el contenido principal
-const BackgroundImageContainer = styled.div`
-  background-image: url('homeBack.jpeg'); // Asegúrate de reemplazar con la ruta correcta
-  background-size: cover;
-  background-position: center;
-  position: relative; // Posición relativa para posicionar los elementos internos
-  height: 100vh; // Ajusta la altura según tus necesidades
-
-`;
-
-// Estilos para el contenedor del contenido principal que se verá sobre la imagen de fondo
-const ContentContainer = styled.div`
-  position: absolute;
-  top: 50%; // Centra verticalmente
-  left: 50%; 
-  transform: translate(-50%, -50%); // Ajusta la posición para centrar exactamente
-  color: white;
-  text-align: center;
-  z-index: 5;
-`;
-const NavbarItem = styled.a`
-  color: white;
-  text-decoration: none;
-  margin: 0 3rem;
-  padding: 1rem 0;
-  position: relative;
-  font-size: 1rem;
-  cursor: pointer;
-  
-  &:hover {
-    color: #ddd; // Cambio de color al pasar el mouse
-  }
-`;
-
-// Contenedor para los ítems de la barra de navegación
-const NavbarItemsContainer = styled.div`
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  flex-grow: 1; // Permite que el contenedor crezca
-`;
-
-const FancyTitle = styled.h1`
-  font-size: 6rem; // Tamaño grande para impacto visual
-  font-family: 'Playfair Display', serif; // Una tipografía con estilo si está disponible
-  color: #fff; // Color blanco para contraste
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); // Sombra para mejorar la legibilidad sobre fondos variados
-  margin: 0;
-`;
 
 
 const Menubar = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsSidebarOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sidebarRef]);
+
   return (
-    <NavbarContainer>
-      <NavbarItemsContainer>
-        <NavbarItem href="#home">Home</NavbarItem>
-        <NavbarItem href="#information">Información</NavbarItem>
-        <Logo src='logo.png' alt="Logo" />
-        <NavbarItem href="#precio">Precio</NavbarItem>
-        <NavbarItem href="#contacto">Contacto</NavbarItem>
-      </NavbarItemsContainer>
-    </NavbarContainer>
+    <>
+      {/* Botón de menú para dispositivos móviles */}
+      <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="md:hidden text-white z-25 p-3">
+        <FontAwesomeIcon icon={faBars} size="2x" color='black' />
+      </button>
+
+
+      {/* Sidebar */}
+      <div ref={sidebarRef} className={`fixed top-0 left-0 w-64 bg-black text-white transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform h-full z-10 md:hidden`}>
+        <a href="#home" className="flex items-center px-4 py-2">
+          <FontAwesomeIcon icon={faHome} className="mr-2" /> Home
+        </a>
+        <a href="#informacion" className="flex items-center px-4 py-2">
+          <FontAwesomeIcon icon={faInfoCircle} className="mr-2" /> Información
+        </a>
+        <a href="#precio" className="flex items-center px-4 py-2">
+          <FontAwesomeIcon icon={faTag} className="mr-2" /> Precio
+        </a>
+        <a href="#contacto" className="flex items-center px-4 py-2">
+          <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> Contacto
+        </a>
+      </div>  
+
+
+      {/* Barra de navegación principal */}
+      <nav className="flex items-center justify-center py-4 px-8 bg-black bg-opacity-70 text-white fixed top-0 w-full z-10 hidden md:flex">
+        <a href="#home" className="mx-12 py-4 text-lg hover:text-gray-300">Home</a>
+        <a href="#informacion" className="mx-12 py-4 text-lg hover:text-gray-300">Información</a>
+        <img src='logo.png' alt="Logo" className="h-12 mr-5 md:h-8" />
+        <a href="#precio" className="mx-12 py-4 text-lg hover:text-gray-300">Precio</a>
+        <a href="#contacto" className="mx-12 py-4 text-lg hover:text-gray-300">Contacto</a>
+      </nav>
+
+    </>
   );
 };
 
 const HeroBackground = () => {
   return (
-    <BackgroundImageContainer id='Home'>
-      <Menubar />
-      <ContentContainer>
-        <FancyTitle>Mundolandia Park</FancyTitle>
-        {/* Puedes agregar más contenido aquí si es necesario */}
-      </ContentContainer>
-    </BackgroundImageContainer>
+    <div
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+      className="bg-cover bg-center bg-no-repeat relative min-h-[50vh] md:min-h-[70vh]"
+      id='home'
+    >   
+     <Menubar />
+     <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-white text-center z-10">
+      <img src='logo.png' alt="Mundolandia Park Logo" className="w-40 md:w-80 h-auto pr-10" />
+    </div>
+
+
+      <div className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
+      <h1 className="text-2xl md:text-6xl font-serif text-white text-shadow-lg mt-36 md:mt-40 leading-none">Mundolandia Park</h1>
+      </div>
+    </div>
   );
 };
 
 export default HeroBackground;
-
-
-

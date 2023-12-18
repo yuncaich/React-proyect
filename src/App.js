@@ -2,8 +2,9 @@ import MenuBar from './menuBar/MenuBar';
 import SliderComponent from './slider/SliderComponent';
 import Price from './price/Price';
 import Contact from './contact/contact';
-import Map from './contact/Map';
+import ImageMap from './contact/imageMap';
 import Footer from './footer/footer';
+import ImagePrice from './price/ImagePrice';
 
 
 function App() {
@@ -14,9 +15,9 @@ function App() {
       </header>
       <main>
         <SliderComponent />
-        <Price />
+        <ImagePrice />
         <Contact />
-        <Map />
+        <ImageMap />
         <Footer />
       </main>
       <footer>

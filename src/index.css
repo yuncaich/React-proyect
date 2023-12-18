@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
  :root {
     --naranja-logo: #FFA500; /* Reemplaza con el código de color exacto del logo */
     --gris-texto: #333333;

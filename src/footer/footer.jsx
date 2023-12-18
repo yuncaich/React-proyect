@@ -1,76 +1,34 @@
 import React from 'react';
-import styled from 'styled-components';
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
-
-const Logo = styled.img`
-  height: auto;
-  width: 6rem; // Adjust the logo size as needed
-  max-width: 100%;
-  margin: 0 auto; // Center the logo horizontally
-  display: block; // Make the logo a block element to allow for auto margins to work
-`;
-
-const FooterWrapper = styled.footer`
-  background-color: #2C2C2C;
-  color: white;
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column; // Stack items vertically
-  align-items: center; // Center items horizontally
-  text-align: center; // Center text for all child elements
-`;
-
-const NavSection = styled.nav`
-  margin: 1rem 0; // Add vertical space around the navigation
-
-  a {
-    margin: 0 0.5rem; // Spacing between navigation items
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #ccc; // Change color on hover
-      text-decoration: underline;
-    }
-  }
-`;
-
-const SocialSection = styled.div`
-  margin-bottom: 1rem; // Add space above the copyright section
-
-  svg {
-    margin: 0 0.5rem; // Spacing between icons
-  }
-`;
-
-const CopyRightSection = styled.div`
-  font-size: 0.875rem; // Small font size for copyright text
-  color: #aaa; // Lighter text color
-`;
 
 const Footer = () => {
   return (
-    <FooterWrapper>
-      <Logo src="logo.png" alt="Logo" />
-      <NavSection>
-        <a href="/about">About</a>
-        <a href="/terms">Terms</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/career">Career</a>
-        <a href="/contact">Contact us</a>
-        <a href="/cookies">Cookies</a>
-      </NavSection>
-      <SocialSection>
-        <FaFacebookF className="text-xl" />
-        <FaInstagram className="text-xl" />
-        <FaTwitter className="text-xl" />
-        <FaLinkedinIn className="text-xl" />
-      </SocialSection>
-      <CopyRightSection>
-        <p>Copyrights ©2023 Booking. Build by Webestica.</p>
-      </CopyRightSection>
-    </FooterWrapper>
+    <footer className="bg-[#2C2C2C] text-white p-8 text-center flex flex-col items-center">
+      <img src="logo.png" alt="Logo" className="h-auto w-24 max-w-full mx-auto mb-4" />
+
+      <nav className="mb-4">
+        <a href="/about" className="mx-2 hover:text-gray-300">About</a>
+        <a href="/terms" className="mx-2 hover:text-gray-300">Terms</a>
+        <a href="/privacy" className="mx-2 hover:text-gray-300">Privacy</a>
+        <a href="/career" className="mx-2 hover:text-gray-300">Career</a>
+        <a href="/contact" className="mx-2 hover:text-gray-300">Contact us</a>
+        <a href="/cookies" className="mx-2 hover:text-gray-300">Cookies</a>
+      </nav>
+
+      <div className="flex justify-center items-center mb-4 text-xl">
+      
+      <div className="flex justify-center items-center mb-4 text-xl">
+        <a href="https://www.instagram.com/mundolandiapark2/" target="_blank" rel="noopener noreferrer" className="flex items-center mx-1">
+          <FaInstagram />
+          <span className="ml-1">mundolandiapark2</span>
+        </a>
+      </div>
+      </div>
+
+      <div className="text-sm text-gray-400">
+        <p>Copyrights ©2023 MundolandiaPark. Built by webYc.</p>
+      </div>
+    </footer>
   );
 };
 

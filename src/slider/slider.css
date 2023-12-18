@@ -1,0 +1,18 @@
+.custom-slick .slick-track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+.custom-slick .slick-prev,
+.custom-slick .slick-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-slick .slick-prev {
+  left: 10px;
+}
+
+.custom-slick .slick-next {
+  right: 10px;
+}
