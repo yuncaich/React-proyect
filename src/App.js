@@ -1,6 +1,5 @@
 import MenuBar from './menuBar/MenuBar'; 
 import SliderComponent from './slider/SliderComponent';
-import Price from './price/Price';
 import Contact from './contact/contact';
 import ImageMap from './contact/imageMap';
 import Footer from './footer/footer';
