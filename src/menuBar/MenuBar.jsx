@@ -5,7 +5,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faHome, faInfoCircle, faTag, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 
-
+/*     <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-white text-center z-10">
+      <img src='logo.png' alt="Mundolandia Park Logo" className="w-40 md:w-80 h-auto pr-10" />
+    </div> */
 
 const Menubar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -70,9 +72,7 @@ const HeroBackground = () => {
       id='home'
     >   
      <Menubar />
-     <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-white text-center z-10">
-      <img src='logo.png' alt="Mundolandia Park Logo" className="w-40 md:w-80 h-auto pr-10" />
-    </div>
+
 
 
       <div className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
