@@ -8,7 +8,6 @@ import Footer from './footer/footer';
 import ImagePrice from './price/ImagePrice';
 import RegisterPage from './RegisterPage';
 import TermsPage from './pages/TermsPage';
-
 function App() {
   return (
     <Router>
@@ -26,7 +25,7 @@ function App() {
               <ImageMap />
             </>} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/register/terms" element={<TermsPage />} />
           </Routes>
         </main>
         <Footer />

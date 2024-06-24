@@ -61,11 +61,11 @@ const Menubar = () => {
         <div className="flex items-center">
           <Link to="/" className="mx-4 py-4 text-lg hover:text-gray-300">Home</Link>
           <a href="#informacion" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'informacion')}>Información</a>
+          <a href="#precio" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'precio')}>Precio</a>
+          <a href="#contacto" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'contacto')}>Contacto</a>
         </div>
         <img src='logo.png' alt="Logo" className="h-12 mr-5 md:h-8" />
         <div className="flex items-center">
-          <a href="#precio" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'precio')}>Precio</a>
-          <a href="#contacto" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'contacto')}>Contacto</a>
           <Link to="/register" className="mx-4 py-4 text-lg hover:text-gray-300">Register</Link>
         </div>
       </nav>
