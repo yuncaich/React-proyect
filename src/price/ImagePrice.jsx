@@ -1,6 +1,6 @@
 import React from 'react';
 import precio from '../images/precio.png';  
-import precioCumple from '../images/PrecioCumple.png';
+import precioCumple from '../images/PrecioCumple.JPG';
 
 const ResponsiveImage = ({ src, alt, additionalClasses }) => {
   return (

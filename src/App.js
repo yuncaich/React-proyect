@@ -8,6 +8,8 @@ import Footer from './footer/footer';
 import ImagePrice from './price/ImagePrice';
 import RegisterPage from './RegisterPage';
 import TermsPage from './pages/TermsPage';
+import RestrictionPage from './RestrictionPage';
+import CumpleañosPage from './CumpleañosPage';
 function App() {
   return (
     <Router>
@@ -26,6 +28,8 @@ function App() {
             </>} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/register/terms" element={<TermsPage />} />
+            <Route path="/restriction" element={<RestrictionPage />} />
+            <Route path="/cumpleaños" element={<CumpleañosPage />} />
           </Routes>
         </main>
         <Footer />

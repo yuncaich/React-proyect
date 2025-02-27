@@ -49,7 +49,8 @@ const priceInfos = [
   {
     title: 'Telefono - Email',
     detail: '615034942 \n Mundolandiapark2@gmail.com',
-  },
+  }
+  /*
   {
     title: 'HORARIO CUMPLEAÑOS INVIERNO: (Hasta desde Noviembre a Abril)',
     detail: 'Horarios de cumpleaños Party Jump: Lunes a Viernes de 16:30 a 18:00 - Sábado, Domingo y festivos de 12:30 a 18:00 Horarios de cumpleaños Party Plus: Lunes a Viernes de 16:30 a 17:30 - Sábado, Domingo y festivos de 12:30 a 17:30',
@@ -57,7 +58,7 @@ const priceInfos = [
   {
     title: 'HORARIO CUMPLEAÑOS VERANO: (Hasta desde MAYO a OCTUBRE)',
     detail: 'Horarios de cumpleaños Party Jump: Lunes a Viernes de 17:30 a 19:00  - Sábado, Domingo y festivos de 12:30 a 19:00 Horarios de cumpleaños Party Plus: Lunes a Viernes de 17:30 a 18:30  - Sábado, Domingo y festivos de 12:30 a 18:30',
-  },
+  },*/ 
 
 ];
 

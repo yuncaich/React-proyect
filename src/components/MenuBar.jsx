@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHome, faInfoCircle, faTag, faEnvelope, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Menubar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -52,7 +51,13 @@ const Menubar = () => {
         <a href="#contacto" className="flex items-center px-4 py-2" onClick={(e) => handleAnchorClick(e, 'contacto')}>
           <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> Contacto
         </a>
-        <Link to="/register" className="flex items-center px-4 py-2" onClick={() => setIsSidebarOpen(false)}>
+        <a href="/cumpleaños" className="flex items-center px-4 py-2" onClick={() => setIsSidebarOpen(false)}>
+          <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> Cumpleaños
+        </a>
+        <a href="/restriction" className="flex items-center px-4 py-2" onClick={() => setIsSidebarOpen(false)}>
+          <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> Restrinciones
+        </a>
+        <Link to="/register" className="flex items-center px-4 py-2" onClick={() => setIsSidebarOpen(true)}>
           <FontAwesomeIcon icon={faUserPlus} className="mr-2" /> Register
         </Link>
       </div>  
@@ -63,6 +68,9 @@ const Menubar = () => {
           <a href="#informacion" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'informacion')}>Información</a>
           <a href="#precio" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'precio')}>Precio</a>
           <a href="#contacto" className="mx-4 py-4 text-lg hover:text-gray-300" onClick={(e) => handleAnchorClick(e, 'contacto')}>Contacto</a>
+          <Link to="/restriction" className="mx-4 py-4 text-lg hover:text-gray-300">Restrinciones</Link>
+          <Link to="/cumpleaños" className="mx-4 py-4 text-lg hover:text-gray-300">Cumpleaños</Link>
+
         </div>
         <img src='logo.png' alt="Logo" className="h-12 mr-5 md:h-8" />
         <div className="flex items-center">
